@@ -1,3 +1,144 @@
 <html>
-    Test2
+    <head>
+        <title>Clash Calculator</title>
+        <script>
+            //changes townhall pics and level
+            var currentTownhall = 0
+            var townhallPic = document.getElementById("TownhallLevel")
+            var townhallPicList = [
+                "Townhalls/Town_Hall1.png",
+                "Townhalls/Town_Hall2.png",
+                "Townhalls/Town_Hall3.png",
+                "Townhalls/Town_Hall4.png",
+                "Townhalls/Town_Hall5.png",
+                "Townhalls/Town_Hall6.png",
+                "Townhalls/Town_Hall7.png",
+                "Townhalls/Town_Hall8.png",
+                "Townhalls/Town_Hall9.png",
+                "Townhalls/Town_Hall10.png"
+            ]
+            
+            function townhallLevelRaise() {
+                if (currentTownhall < 9) {
+                    currentTownhall++
+                    townhallLevel.src = townhallPicList[currentTownhall]
+                    newBarracksStatus()
+                    document.getElementById("townhallLevelDisplay").innerHTML = "Level" + " " + String(currentTownhall + 1)
+                }   
+            }
+            function townhallLevelLower() {
+                    if (currentTownhall > 0) {
+                    currentTownhall--
+                    townhallLevel.src = townhallPicList[currentTownhall]
+                    newBarracksStatus()
+                    document.getElementById("townhallLevelDisplay").innerHTML = "Level" + " " + String(currentTownhall + 1)
+                }   
+            }
+            
+            //figures out how many barracks and what level
+            var numBarracks = 0
+            var lvlBarracks = 3
+            
+            function newBarracksStatus() {
+                switch (currentTownhall) {
+                    case 0: numBarracks = 1
+                            break;
+                    case 1: numBarracks = 2
+                            break;
+                    case 2: numBarracks = 2
+                            break;
+                    case 3: numBarracks = 3
+                            break;
+                    case 4: numBarracks = 3
+                            break;
+                    case 5: numBarracks = 3
+                            break;
+                    case 6: numBarracks = 4
+                            break;
+                    case 7: numBarracks = 4
+                            break;
+                    case 8: numBarracks = 4
+                            break;
+                    case 9: numBarracks = 4
+                }
+                
+                switch (currentTownhall) {
+                    case 0: lvlBarracks = 3
+                            break;
+                    case 1: lvlBarracks = 4
+                            break;
+                    case 2: lvlBarracks = 5
+                            break;
+                    case 3: lvlBarracks = 6
+                            break;
+                    case 4: lvlBarracks = 7
+                            break;
+                    case 5: lvlBarracks = 8
+                            break;
+                    case 6: lvlBarracks = 9
+                            break;
+                    case 7: lvlBarracks = 10
+                            break;
+                    case 8: lvlBarracks = 10
+                            break;
+                    case 9: lvlBarracks = 10
+                }
+                reloadBarracks()
+            }
+            var userNumBarracks = Number(numBarracks)
+            
+            function BarrackAmountRaise() {
+                if(userNumBarracks < numBarracks){
+                    userNumBarracks++
+                    showMoreBarracks()
+                }
+            }
+            function BarrackAmountLower() {
+                if(userNumBarracks > 1){
+                    userNumBarracks--
+                    showLessBarracks()
+                    }
+            }
+            //shows the barracks and lvls
+            var barracksList = [
+                "barrack1", "barrack2", "barrack3", "barrack4"
+            ]
+            var i = 0
+            function showMoreBarracks() {
+                for(i = 0; i < userNumBarracks; i++){
+                    document.getElementById(barracksList[i]).style.visibility = 'visible'
+                }
+            }
+            function showLessBarracks() {
+                    i = numBarracks
+                    document.getElementById(barracksList[i]).style.visibility = 'hidden'
+            }
+        </script>
+            
+    </head>
+    
+    <body>
+        <div>Clash Of Clans Calculator</div>
+        <div>
+            <div>Town Hall Level</div>
+            <div><img id="townhallLevel" src="Townhalls/Town_Hall1.png" style="width:100px; height:100px"></img></div>
+            <div id="townhallLevelDisplay">Level 1</div>
+            <div>
+                <button onclick="townhallLevelRaise()">+</button>
+                <button onclick = "townhallLevelLower()">-</button>
+            </div>
+            <div>Barracks</div>
+            <div>Amount</div>
+            <div>
+                <button onclick="BarrackAmountRaise()">+</button>
+                <button onclick = "BarrackAmountLower()">-</button>
+            </div>
+            <div>
+                <span id="barrack1" style="visibility: hidden"><img src="Barracks/Barracks1.png"></img></span>
+                <span id="barrack2" style="visibility: hidden"><img src="Barracks/Barracks1.png"></img></span>
+                <span id="barrack3" style="visibility: hidden"><img src="Barracks/Barracks1.png"></img></span>
+                <span id="barrack4" style="visibility: hidden"><img src="Barracks/Barracks1.png"></img></span>
+            </div>
+        </div>
+    </body>
 </html>
